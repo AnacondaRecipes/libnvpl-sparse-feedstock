@@ -49,15 +49,15 @@ outputs:
     test:
       files:
         - test
-      requires:   # [build_platform == target_platform]
-        - {{ compiler("c") }}  # [build_platform == target_platform]
-        - {{ compiler("cxx") }}  # [build_platform == target_platform]
-        - {{ stdlib("c") }}  # [build_platform == target_platform]
-        - cmake   # [build_platform == target_platform]
-        - ninja-base  # [build_platform == target_platform]
+      requires:
+        - {{ compiler("c") }}
+        - {{ compiler("cxx") }}
+        - {{ stdlib("c") }}
+        - cmake
+        - ninja-base
       commands:
-        - cmake ${CMAKE_ARGS} -GNinja test  # [build_platform == target_platform]
-        - cmake --build .  # [build_platform == target_platform]
+        - cmake ${CMAKE_ARGS} -GNinja test
+        - cmake --build .
         - test -f $PREFIX/include/nvpl_sparse.h
         - test -f $PREFIX/lib/cmake/nvpl_sparse/nvpl_sparse-config.cmake
         - test -f $PREFIX/lib/libnvpl_sparse.so
